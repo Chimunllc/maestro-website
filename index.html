@@ -984,7 +984,7 @@ const CONFIG = {
   ADDRESS: '',
   HOURS: '',
   MENU_URL: 'https://n8n.nomaadcamp.com/db/rest/v1/public_maestro_menu?select=data',   // ERP-ийн харагдац. Хоосон = доорх жишээ меню (зөвхөн прототип)
-  INQUIRY_URL: ''                   // хоосон = demo. Хүсэлт ОДООГООР хүлээн авагдахгүй.
+  INQUIRY_URL: 'https://n8n.nomaadcamp.com/db/rest/v1/rpc/submit_maestro_lead'   // ERP-ийн submit_maestro_lead (db/maestro_leads.sql). Хоосон = demo, хүсэлт хаашаа ч явахгүй.
 };
 
 const $ = (id) => document.getElementById(id);
@@ -1308,6 +1308,7 @@ function showDone(num, p) {
   $('done').scrollIntoView({ behavior: 'smooth', block: 'center' });
   $('done').focus({ preventScroll: true });
 }
+(() => { const n = new Date(), p = (x) => String(x).padStart(2, '0'); $('date').min = n.getFullYear() + '-' + p(n.getMonth() + 1) + '-' + p(n.getDate()); })();   // өнгөрсөн өдөр сонгогдохгүй
 $('done-again').addEventListener('click', () => { $('done').hidden = true; $('form').hidden = false; $('name').focus(); });
 function say(kind, msg) {
   const s = $('status'); s.className = 'status on ' + kind; s.textContent = msg;
@@ -1319,15 +1320,17 @@ $('form').addEventListener('submit', async (ev) => {
   const name = f.name.value.trim(), phone = f.phone.value.trim();
   if (!name) { say('err', 'Нэрээ оруулна уу.'); f.name.focus(); return; }
   if (phone.replace(/\D/g, '').length < 8) { say('err', 'Утасны дугаараа бүтнээр оруулна уу.'); f.phone.focus(); return; }
+  if (f.date.value && f.date.min && f.date.value < f.date.min) { say('err', 'Огноо өнгөрсөн байна. Ирээдүйн огноо сонгоно уу.'); f.date.focus(); return; }
 
   const line = LINES.find((l) => l.id === f.line.value);
   const payload = {
-    source: 'maestro-website',
+    source: CONFIG.PROTOTYPE ? 'maestro-preview' : 'maestro-site',    // preview-ээс ирсэн нь ERP-д «test» төлөвтэй орно
     line: f.line.value, lineName: line ? line.name : '',
     package: picked ? picked.pkg.id : '', packageName: picked ? picked.pkg.name : '',
     name, phone, email: f.email.value.trim(), date: f.date.value, guests: Number(f.guests.value) || 0,
-    venue: f.venue.value.trim(), note: f.note.value.trim(), submittedAt: new Date().toISOString()
+    venue: f.venue.value.trim(), note: f.note.value.trim()
   };
+  if (payload.note.length > 1000) { say('err', 'Нэмэлт тайлбар 1000 тэмдэгтээс хэтэрсэн байна.'); f.note.focus(); return; }
 
   if (!CONFIG.INQUIRY_URL) {
     // ⚠ Хуурамч амжилт ХИЙХГҮЙ: хүсэлт хаашаа ч явахгүй.
@@ -1336,15 +1339,23 @@ $('form').addEventListener('submit', async (ev) => {
     return;
   }
   const btn = $('send'); btn.disabled = true; btn.textContent = 'Илгээж байна...';
+  const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), 12000);
   try {
-    const r = await fetch(CONFIG.INQUIRY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    // ERP-ийн submit_maestro_lead функц (PostgREST RPC). `params=single-object` → body бүхлээрээ нэг JSON оролт болно.
+    const r = await fetch(CONFIG.INQUIRY_URL, {
+      method: 'POST', signal: ctl.signal,
+      headers: { 'Content-Type': 'application/json', 'Prefer': 'params=single-object' },
+      body: JSON.stringify(payload)
+    });
     const data = await r.json().catch(() => ({}));
-    const num = data.number || data.inquiryNumber || '';
-    if (!r.ok || data.ok === false || !num) throw new Error(data.reason || 'Хүсэлт бүртгэгдсэнгүй.');   // дугаар ирээгүй бол амжилт БИШ
+    const num = data.number || '';
+    // дугаар ирээгүй бол амжилт БИШ. Серверийн `reason` (монгол тайлбар) зөвхөн ok:false үед; бусад алдааны дотоод мэдээллийг харуулахгүй.
+    if (!r.ok || data.ok !== true || !num) throw new Error(r.ok && data.ok === false && data.reason ? data.reason : 'Хүсэлт бүртгэгдсэнгүй.');
     f.reset(); unpick(); showDone(num, payload);
   } catch (e) {
-    say('err', e.message + ' Утсаар холбогдоно уу: ' + CONFIG.PHONE);
-  } finally { btn.disabled = false; btn.textContent = 'Хүсэлт илгээх'; }
+    const why = e.name === 'AbortError' ? 'Холболт удааширлаа.' : e instanceof TypeError ? 'Интернэт холболтоо шалгана уу.' : e.message;
+    say('err', why + ' Утсаар холбогдоно уу: ' + CONFIG.PHONE);
+  } finally { clearTimeout(timer); btn.disabled = false; btn.textContent = 'Хүсэлт илгээх'; }
 });
 
 /* ============ Итгэлийн хэсэг: бодит материал орох хүртэл ЖИШЭЭ нь зөвхөн туршилтын горимд ============ */
