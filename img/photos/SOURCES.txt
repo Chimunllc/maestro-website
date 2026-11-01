@@ -1,0 +1,18 @@
+ТҮР ЗУРГУУД (прототип). Эх сурвалж: Pexels (https://www.pexels.com). Pexels License: арилжаанд чөлөөтэй, заавал дурдах шаардлагагүй.
+Бүх зургийг нэг өнгөний тонтой болгож боловсруулсан. Maestro-ийн өөрийн зургаар солино: файлын нэрийг хэвээр үлдээгээд дарж хийхэд л болно.
+
+hero-wide.jpg       <-  https://www.pexels.com/photo/16120244/   (толинд эргүүлсэн; хурим)
+hero-workplace.jpg  <-  https://www.pexels.com/photo/6995300/    (ажилчдын хоол)
+hero-corporate.jpg  <-  https://www.pexels.com/photo/34307855/   (байгууллагын катеринг)
+band.jpg            <-  https://www.pexels.com/photo/29040997/
+wp-standard.jpg     <-  https://www.pexels.com/photo/34326239/
+wp-business.jpg     <-  https://www.pexels.com/photo/30635714/
+wp-trial.jpg        <-  https://www.pexels.com/photo/6613954/
+co-coffee.jpg       <-  https://www.pexels.com/photo/38598138/
+co-lunchbox.jpg     <-  https://www.pexels.com/photo/6995300/
+co-lunch.jpg        <-  https://www.pexels.com/photo/1327393/
+co-gala.jpg         <-  https://www.pexels.com/photo/34890766/
+wd-classic.jpg      <-  https://www.pexels.com/photo/29040997/
+wd-signature.jpg    <-  https://www.pexels.com/photo/26774590/
+wd-private.jpg      <-  https://www.pexels.com/photo/19894400/
+wd-tasting.jpg      <-  https://www.pexels.com/photo/28705621/
