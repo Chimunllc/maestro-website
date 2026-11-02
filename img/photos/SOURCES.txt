@@ -4,7 +4,6 @@
 hero-wide.jpg       <-  https://www.pexels.com/photo/16120244/   (толинд эргүүлсэн; хурим)
 hero-workplace.jpg  <-  https://www.pexels.com/photo/6995300/    (ажилчдын хоол)
 hero-corporate.jpg  <-  https://www.pexels.com/photo/34307855/   (байгууллагын катеринг)
-band.jpg            <-  https://www.pexels.com/photo/29040997/
 wp-standard.jpg     <-  https://www.pexels.com/photo/34326239/
 wp-business.jpg     <-  https://www.pexels.com/photo/30635714/
 wp-trial.jpg        <-  https://www.pexels.com/photo/6613954/
