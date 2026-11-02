@@ -117,9 +117,9 @@ nav.main a:not(.btn):hover::after,nav.main a.active::after{transform:scaleX(1)}
 /* меню */
 .pk{display:block}
 .pk-rest{display:grid;grid-template-columns:repeat(3,1fr);gap:64px 28px}
-.pk-rest:not(:empty){margin-top:88px}
+.pk-rest:not(:empty){margin-top:56px}
 .pk-rest[data-n="2"]{grid-template-columns:repeat(2,1fr);gap:64px 40px}
-.pk-rest[data-n="2"] .media{aspect-ratio:4/3}
+.pk-rest[data-n="2"] .media{aspect-ratio:16/10}
 .pk-rest[data-n="1"]{grid-template-columns:minmax(0,1fr)}
 .pkg{position:relative;display:flex;flex-direction:column;animation:rise .8s var(--ease) both;animation-delay:calc(var(--i,0) * 80ms)}
 .media{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/5;background:linear-gradient(145deg,#e9dfc8,#d8cba9);display:flex;align-items:center;justify-content:center;color:rgba(110,84,34,.7)}
@@ -142,7 +142,7 @@ nav.main a:not(.btn):hover::after,nav.main a.active::after{transform:scaleX(1)}
 .pkg .min{margin-top:8px;font-size:13px;color:var(--gold-ink);font-weight:600}
 .pkg .body>:nth-last-child(2){margin-bottom:20px}
 .pkg.feat{display:grid;grid-template-columns:1.3fr 1fr;gap:72px;align-items:center}
-.pkg.feat .media{aspect-ratio:4/3;border-radius:var(--r-lg)}
+.pkg.feat .media{aspect-ratio:16/10;border-radius:var(--r-lg)}
 .pkg.feat .body{padding:0}
 .pkg.feat .eb{font:600 12px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:22px}
 .pkg.feat h3{font-size:clamp(28px,4.4vw,66px);line-height:1.02}
@@ -179,7 +179,7 @@ nav.main a:not(.btn):hover::after,nav.main a.active::after{transform:scaleX(1)}
 
 /* сонгосон үйлчилгээ + түүний багцууд нэг хэсэгт */
 .svc[aria-current="true"]{border-color:var(--ink);background:#fff;box-shadow:0 0 0 1px var(--ink)}
-.menu-body{margin-top:64px;scroll-margin-top:96px}
+.menu-body{margin-top:48px;scroll-margin-top:96px}
 .pkg h3 .sub,.sheet h3 .sub{display:block;margin-top:3px;font-style:italic;font-weight:500;font-size:.7em;color:var(--gold-ink)}
 .calc{margin-top:22px;padding:16px 18px;background:#fff;border:1px solid var(--line);border-radius:var(--r);display:grid;grid-template-columns:1fr 110px;gap:10px 14px;align-items:center}
 .calc label{font:600 14px/1.2 var(--sans)}
@@ -187,8 +187,9 @@ nav.main a:not(.btn):hover::after,nav.main a.active::after{transform:scaleX(1)}
 .calc-out{grid-column:1/-1;font:500 22px/1.2 var(--serif);font-variant-numeric:lining-nums}
 .calc-out small{display:block;margin-top:5px;font:500 12.5px/1.5 var(--sans);color:#555}
 .calc-out .warn{color:#8a4b12;font-weight:600}
-.faq{padding:110px 0}
-.faq-list{margin-top:36px;max-width:820px;border-top:1px solid var(--line)}
+.faq{padding:100px 0 70px}
+.faq-grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:72px;align-items:start;margin-top:36px}
+.faq-list{border-top:1px solid var(--line)}
 .faq details{border-bottom:1px solid var(--line)}
 .faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px 0;font:500 21px/1.3 var(--serif)}
 .faq summary::-webkit-details-marker{display:none}
@@ -247,7 +248,7 @@ nav.main a:not(.btn):hover::after,nav.main a.active::after{transform:scaleX(1)}
 /* зургийн зурвас */
 
 /* хүсэлт */
-.quote{padding:150px 0}
+.quote{padding:110px 0 130px}
 .quote .sec-head{margin-bottom:40px}
 .panel{display:grid;grid-template-columns:.85fr 1.15fr;border-radius:var(--r-lg);overflow:hidden;background:var(--sand)}
 .side{position:relative;isolation:isolate;color:var(--ivory);padding:52px;display:flex;flex-direction:column;justify-content:flex-end;min-height:620px}
@@ -292,10 +293,9 @@ details.more .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .submit small{color:#666;font-size:13px}
 
 /* долоо хоногийн меню */
-.week{margin-top:110px;padding-top:64px;border-top:1px solid var(--line)}
-.week-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:48px}
-.week-head h3{font-size:clamp(26px,3.8vw,54px);line-height:1.04}
-.week-head p{font-size:14px;color:#555;max-width:40ch}
+.week{margin-top:56px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.week-t h3{font-size:clamp(24px,3vw,40px);line-height:1.1}
+.week-t p{margin-top:6px;font-size:14px;color:#555;max-width:48ch}
 .week-grid{display:grid;grid-template-columns:repeat(5,1fr)}
 .day{padding:4px 24px;border-left:1px solid var(--line)}
 .day:first-child{padding-left:0;border-left:0}
@@ -370,6 +370,51 @@ footer::before{content:"";position:absolute;right:4%;top:0;height:78%;aspect-rat
 .js .rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
 .js .rv.in{opacity:1;transform:none}
 
+/* нүүр: үйлчилгээ сонгох 3 сонголт (hero зураг солигдоно) */
+.hero-pick{margin-top:44px;max-width:900px;min-height:112px}
+.hero-pick.off{display:none}
+.hp-k{font:600 12px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:rgba(247,242,232,.72);margin-bottom:14px}
+.hp-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;opacity:0;transition:opacity .6s var(--ease)}
+.hero-pick.on .hp-row{opacity:1}
+.pc{display:flex;flex-direction:column;gap:6px;padding:16px 20px;border:1px solid rgba(247,242,232,.3);border-radius:var(--r);background:rgba(247,242,232,.08);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:var(--ivory);text-decoration:none;transition:background .3s,border-color .3s,transform .3s var(--ease)}
+.pc b{font:600 16px/1.25 var(--sans)}
+.pc span{font:500 14px/1.3 var(--sans);color:var(--gold-soft);font-variant-numeric:lining-nums}
+.pc:hover,.pc:focus-visible{background:rgba(247,242,232,.18);border-color:var(--gold);transform:translateY(-2px)}
+.pc.cur{border-color:var(--gold);background:rgba(247,242,232,.14)}
+/* долоо хоногийн меню: эвхэгдэнэ */
+.week>summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:26px 0}
+.week>summary::-webkit-details-marker{display:none}
+.week>summary::after{content:"+";flex:none;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;border:1px solid rgba(17,17,17,.25);font:400 20px/1 var(--sans);transition:transform .3s var(--ease)}
+.week[open]>summary::after{transform:rotate(45deg)}
+.week[open] .week-grid{padding:8px 0 44px}
+/* асуулт: баруун талд холбоо барих карт */
+.faq-aside{position:sticky;top:110px;padding:32px 30px;border-radius:var(--r-lg);background:var(--sand)}
+.faq-aside h3{font-size:30px;line-height:1.08}
+.faq-aside p{margin:12px 0 22px;font-size:15px;line-height:1.65;color:#444}
+.faq-aside .acts{display:grid;gap:14px;justify-items:start}
+.faq-aside .btn{width:100%}
+/* форм: сонгосон багцын хураангуй, «дараа нь» */
+.picked .pk-t{display:grid;gap:4px;min-width:0}
+.picked .pk-t small{font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--gold-ink)}
+.picked .pk-t b{font:600 16px/1.3 var(--sans)}
+.picked .pk-t em{font-style:normal;font-size:13.5px;line-height:1.45;font-weight:400;color:#555}
+.after{list-style:none;margin:26px 0 0;display:grid;gap:12px;font-size:15px;line-height:1.5;color:rgba(247,242,232,.9)}
+.after li{display:grid;grid-template-columns:26px 1fr;gap:12px;align-items:start}
+.after b{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--gold);color:var(--ink);font:600 12px/1 var(--sans)}
+@media (max-width:900px){
+  .faq-grid{grid-template-columns:1fr;gap:32px}
+  .faq-aside{position:static}
+}
+@media (max-width:640px){
+  .hero-pick{margin-top:26px;min-height:214px}
+  .hp-row{grid-template-columns:1fr;gap:8px}
+  .pc{flex-direction:row;align-items:center;justify-content:space-between;gap:12px;padding:13px 16px;min-height:50px}
+  .pc b{font-size:15px}
+  .pc span{font-size:13px;text-align:right;white-space:nowrap;flex:none}
+  .week>summary{padding:18px 0}
+  .faq-aside{padding:24px 22px}
+  .faq-aside h3{font-size:26px}
+}
 @media (max-width:1180px){
   nav.main .tel{display:none}
   nav.main{gap:26px}
@@ -432,7 +477,7 @@ footer::before{content:"";position:absolute;right:4%;top:0;height:78%;aspect-rat
   .services{padding:48px 0 56px}
   .menu-body{margin-top:30px}
   .faq{padding:56px 0}
-  .faq-list{margin-top:20px}
+  .faq-grid{margin-top:20px;gap:28px}
   .faq summary{font-size:17px;padding:16px 0}
   .faq details p{padding-right:0;font-size:14.5px}
   .calc{grid-template-columns:1fr 96px;padding:14px}
@@ -562,7 +607,11 @@ footer::before{content:"";position:absolute;right:4%;top:0;height:78%;aspect-rat
     <p class="lead">Байгууллагын өдөр тутмын хоолноос хурим, томоохон арга хэмжээний кейтеринг хүртэл. Бид бүгдийг зохицуулна, та зочдоо хүлээн авахад л анхаар.</p>
     <div class="hero-cta">
       <a class="btn" href="#quote">Үнийн санал авах</a>
-      <a class="tlink" href="#services">Үйлчилгээ, үнэ үзэх <span aria-hidden="true">↓</span></a>
+      <a class="tlink" id="hero-more" href="#services">Үйлчилгээ, үнэ үзэх <span aria-hidden="true">↓</span></a>
+    </div>
+    <div class="hero-pick" id="hero-pick" role="group" aria-labelledby="hp-k">
+      <p class="hp-k" id="hp-k">Үйлчилгээгээ сонгоно уу</p>
+      <div class="hp-row" id="hero-pick-row"></div>
     </div>
   </div>
   <div class="cue" aria-hidden="true">Гүйлгэх</div>
@@ -618,11 +667,22 @@ footer::before{content:"";position:absolute;right:4%;top:0;height:78%;aspect-rat
       <div class="sec-head"><span class="idx">03</span><span class="rule"></span><span class="eyebrow">Түгээмэл асуулт</span></div>
       <h2>Түгээмэл <em>асуулт</em></h2>
     </div>
+    <div class="faq-grid">
     <div class="faq-list rv">
       <details><summary>Хэрхэн захиалах вэ?</summary><p>Доорх хүсэлтийн формд огноо, хүний тоо, арга хэмжээний төрлөө бичнэ. Бид тантай холбогдож меню, үнийг тохиролцоно.</p></details>
       <details><summary>Үнэ юунаас бүрдэх вэ?</summary><p>Багц дээрх үнэ нь нэг хүнд ногдох дүн. Үнийн санал дээр хоол, үйлчилгээ, хүргэлтийн бүх зардлыг нэг дор тусгаж, эцсийн үнийг баталгаажуулна.</p></details>
       <details><summary>Бэлэн багцаас өөр меню захиалж болох уу?</summary><p>Болно. Бэлэн багцаас сонгох эсвэл таны хүсэлтээр меню зохионо.</p></details>
       <details><summary>Хуримын менюг урьдчилан амталж болох уу?</summary><p>Болно. Хурим ба хувийн арга хэмжээний үйлчилгээг дегустациар эхлүүлнэ: менюгээ урьдчилан амталж, шийднэ.</p></details>
+    </div>
+    <aside class="faq-aside rv" aria-labelledby="fa-t">
+      <h3 id="fa-t">Өөр асуулт байна уу?</h3>
+      <p>Хүсэлтээ илгээвэл бид тантай холбогдож хариулна.</p>
+      <div class="acts">
+        <a class="btn dark" href="#quote">Хүсэлт илгээх</a>
+        <a class="tlink" id="fa-call" href="#" hidden>Залгах: <span></span></a>
+        <a class="tlink" id="fa-msg" href="#" hidden>Messenger-ээр бичих</a>
+      </div>
+    </aside>
     </div>
   </div>
 </section>
@@ -635,6 +695,11 @@ footer::before{content:"";position:absolute;right:4%;top:0;height:78%;aspect-rat
         <img src="img/photos/wd-signature.jpg" srcset="img/photos/wd-signature-360.webp 360w, img/photos/wd-signature-640.webp 640w, img/photos/wd-signature-900.webp 900w" sizes="(max-width:1000px) 100vw, 480px" alt="" loading="lazy" decoding="async">
         <h2>Үнийн санал <em>авах</em></h2>
         <p class="lead">Огноо, хүний тоогоо оруулахад л болно. Бид тантай холбогдож меню, үнийг тохиролцоно.</p>
+        <ol class="after" aria-label="Дараа нь юу болох">
+          <li><b>1</b>Та хүсэлтээ илгээнэ</li>
+          <li><b>2</b>Бид тантай холбогдож меню, үнийг тохиролцоно</li>
+          <li><b>3</b>Та нэг тодорхой үнийн санал авна</li>
+        </ol>
         <div class="contacts">
           <a id="c-phone" href="#"><small>Утас</small><span></span></a>
           <a id="c-mail" href="#" hidden><small>Имэйл</small><span></span></a>
@@ -643,7 +708,7 @@ footer::before{content:"";position:absolute;right:4%;top:0;height:78%;aspect-rat
         </div>
       </div>
       <form id="form" novalidate>
-        <div class="picked" id="picked"><span id="picked-t"></span><button type="button" id="picked-x">Болих</button></div>
+        <div class="picked" id="picked"><span class="pk-t"><small>Сонгосон</small><b id="picked-t"></b><em id="picked-d"></em></span><button type="button" id="picked-x">Болих</button></div>
         <div class="f full"><label for="line">Үйлчилгээ</label>
           <select id="line" name="line"></select></div>
         <div class="f"><label for="name">Нэр <i>*</i></label><input id="name" name="name" autocomplete="name" required></div>
@@ -1175,6 +1240,8 @@ if (HAS_PHONE) {
   document.querySelector('.mbar').classList.add('solo');
   if (!CONFIG.EMAIL) $('f-form').hidden = false;
 }
+if (HAS_PHONE) { $('fa-call').hidden = false; $('fa-call').href = telHref(CONFIG.PHONE); $('fa-call').lastElementChild.textContent = CONFIG.PHONE; }
+if (CONFIG.MESSENGER_URL) { $('fa-msg').hidden = false; $('fa-msg').href = CONFIG.MESSENGER_URL; }
 if (CONFIG.EMAIL) { $('c-mail').hidden = false; $('c-mail').href = 'mailto:' + CONFIG.EMAIL; $('c-mail').lastElementChild.textContent = CONFIG.EMAIL; }
 if (CONFIG.MESSENGER_URL) { $('c-msg').hidden = false; $('c-msg').href = CONFIG.MESSENGER_URL; }
 if (CONFIG.VIBER_URL) { $('c-vib').hidden = false; $('c-vib').href = CONFIG.VIBER_URL; }
@@ -1249,8 +1316,8 @@ function renderWeek(line) {
     el('h4', { text: d.day }),
     ...rows.filter(([k]) => d[k]).map(([k, label]) => el('p', {}, [el('small', { text: label }), document.createTextNode(d[k])]))
   ]));
-  wrap.append(el('div', { class: 'week' }, [
-    el('div', { class: 'week-head' }, [el('h3', { text: w.title || 'Долоо хоногийн меню' }), w.note ? el('p', { text: w.note }) : document.createTextNode('')]),
+  wrap.append(el('details', { class: 'week' }, [
+    el('summary', {}, [el('span', { class: 'week-t' }, [el('h3', { text: w.title || 'Долоо хоногийн меню' }), el('p', { text: w.note || '5 ажлын өдрийн меню' })])]),
     el('div', { class: 'week-grid' }, days)
   ]));
 }
@@ -1314,7 +1381,10 @@ function updateEst() {
 function pick(line, pkg) {
   picked = { line, pkg };
   $('line').value = line.id;
-  $('picked-t').textContent = 'Сонгосон: ' + pkg.name;
+  $('picked-t').textContent = pkg.name;
+  $('picked-d').textContent = [line.name,
+    pkg.price ? fmt(pkg.price) + (pkg.price_note ? '-аас эхлэн' : '') + (pkg.unit ? ' / ' + pkg.unit : '') : 'Үнийн санал',
+    pkg.min ? 'Доод хэмжээ: ' + pkg.min : ''].filter(Boolean).join(' · ');
   $('picked').classList.add('on');
   updateEst();
   $('quote').scrollIntoView({ behavior: 'smooth' });
@@ -1328,10 +1398,30 @@ $('line').addEventListener('change', () => { if (picked && picked.line.id !== $(
 /* ============ Hero зураг: үйлчилгээ бүрд өөр зураг ============ */
 const heroEls = {};
 let heroId = null, heroAuto = true;
+function markHeroPick() { document.querySelectorAll('#hero-pick-row .pc').forEach((c) => c.classList.toggle('cur', c.dataset.id === heroId)); }
 function showHero(id) {
   if (!heroEls[id] || id === heroId) return;
   heroId = id;
   Object.keys(heroEls).forEach((k) => heroEls[k].classList.toggle('on', k === id));
+  markHeroPick();
+}
+/* нүүр дэлгэцийн сонголт: үйлчилгээ бүр + хамгийн бага үнэ. Хүрэхэд hero зураг солигдож, автомат солилт зогсоно; дарахад багцууд руу очно */
+function renderHeroPick() {
+  const row = $('hero-pick-row'); row.textContent = '';
+  LINES.forEach((l) => {
+    const priced = (l.packages || []).filter((p) => Number(p.price) > 0).sort((a, b) => a.price - b.price)[0];
+    const a = el('a', { class: 'pc', href: '#menu', 'data-id': l.id }, [
+      el('b', { text: l.name }),
+      el('span', { text: priced ? fmt(priced.price) + '-аас эхлэн' : 'Үнийн санал' })
+    ]);
+    const preview = () => { heroAuto = false; showHero(l.id); };
+    a.addEventListener('mouseenter', preview); a.addEventListener('focus', preview);
+    a.addEventListener('click', (e) => { e.preventDefault(); preview(); selectLine(l.id); $('menu').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+    row.append(a);
+  });
+  $('hero-more').hidden = true;
+  $('hero-pick').classList.add('on');
+  markHeroPick();
 }
 /* үйлчилгээний картууд: ERP-ийн меню (LINES)-ээс — нэр, тайлбар, хамгийн бага үнэ */
 function renderServices() {
@@ -1424,10 +1514,12 @@ async function loadMenu() {
     const fm = $('f-menu');
     LINES.forEach((l) => { const a = el('a', { href: '#menu', text: l.name }); a.addEventListener('click', () => selectLine(l.id)); fm.append(a); });
     setupHero();
+    renderHeroPick();
     selectLine(LINES[0].id);
     if (!CONFIG.PROTOTYPE) injectSchema();   // хайлтын систем: ЗӨВХӨН нээлтэд (жишээ мэдээлэл хайлтад орохгүй)
   } catch (e) {
     $('pk').textContent = '';
+    $('hero-pick').classList.add('off');
     $('pk').append(el('p', { text: 'Меню ачаалагдсангүй.' + callHint }));
     console.error('menu', e);
   }
